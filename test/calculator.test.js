@@ -28,4 +28,14 @@ describe('String Calculator', () => {
     test('should throw an error when a negative number is provided', () => {
         expect(() => add('1,-2,3,-5')).toThrowError('Negative numbers not allowed');
     });
+
+    test('should ignore numbers greater than 1000', () => {
+        expect(add('2,1001')).toBe(2);
+        expect(add('1000,1001')).toBe(1000);
+    });
+
+    test('should handle multiple delimiters correctly', () => {
+        expect(add('//;\n1;2')).toBe(3);
+        expect(add('//|\n5|6|7')).toBe(18);
+    });
 });
